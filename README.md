@@ -382,26 +382,6 @@ SAGE-AI/
     └── ui-agent-framework.md        # Multi-agent persona abstraction & cognitive UX theory
 ```
 
----
-
-## 11. Citation & BibTeX
-
-To cite the SAGE cognitive co-processor theoretical framework in academic publications:
-
-```bibtex
-@article{sharma2026sage,
-  title   = {SAGE: A Synchronized Multimodal Cognitive Co-Processor for Continuous Wearable Memory Retrieval},
-  author  = {Sharma, Vinayak},
-  journal = {TechBastards Academic Research Preprint Series},
-  year    = {2026},
-  volume  = {Preprint},
-  number  = {TR-2026-SAGE01},
-  url     = {https://github.com/TechBastards/SAGE-AI}
-}
-```
-
----
-
 ## 12. Contact & Academic Inquiries
 
 **Vinayak Sharma**  
