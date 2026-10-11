@@ -402,6 +402,5 @@ To cite the SAGE cognitive co-processor theoretical framework in academic public
 ## 12. Contact & Academic Inquiries
 
 **Vinayak Sharma**  
-Lead Architect & Researcher — *TechBastards*  
-GitHub: [@vinayaksharmadev](https://github.com/vinayaksharmadev)  
-Organization: [@TechBastards](https://github.com/TechBastards)
+Lead Architect & Researcher 
+Organization: [@ByteBastion](https://github.com/TechBastards)
