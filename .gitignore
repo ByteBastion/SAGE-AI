@@ -13,6 +13,35 @@
 Thumbs.db
 desktop.ini
 
-# Logs
+# Logs & Binaries
 *.log
 debug.log
+*.exe
+*.bin
+*.hex
+*.elf
+
+# Environment & Credentials
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+env/
+venv/
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.pub-cache/
+.pub/
+
+# Hardware Build Output
+hardware/**/build/
+hardware/**/cache/
