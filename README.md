@@ -9,6 +9,7 @@
   *ByteBastion Engineering Laboratory*
 
   Divison:Agent.exe + Mecha.exe
+  
   `Preprint Specification • Theoretical Computer Science & Embedded Systems`
 
 </div>
