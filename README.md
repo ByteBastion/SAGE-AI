@@ -6,7 +6,9 @@
   ### Theoretical Architecture, Mathematical Formulation, and Empirical Framework for Edge-Partitioned Lifelogging Systems
 
   **Vinayak Sharma**  
-  *TechBastards Research Initiative*  
+  *ByteBastion Engineering Laboratory*
+
+  Divison:Agent.exe + Mecha.exe
   `Preprint Specification • Theoretical Computer Science & Embedded Systems`
 
 </div>
@@ -403,5 +405,3 @@ To cite the SAGE cognitive co-processor theoretical framework in academic public
 
 **Vinayak Sharma**  
 Lead Architect & Researcher 
-
-Organization: [@ByteBastion](https://github.com/TechBastards)
