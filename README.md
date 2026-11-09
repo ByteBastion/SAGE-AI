@@ -111,7 +111,7 @@ For expanded scenario workflows, see [Use Cases](docs/use-cases/use-cases-detail
 ---
 
 ## 12. Intellectual Property & License
-Copyright © 2026 Vinayak Sharma / TechBastards. All Rights Reserved.
+Copyright © 2026 Vinayak Sharma / ByteBastion. All Rights Reserved.
 
 This repository contains academic documentation, research methodologies, and high-level architectural specifications for the SAGE project. The proprietary firmware implementation, synchronization algorithms, and software pipelines are protected under intellectual property law.
 
