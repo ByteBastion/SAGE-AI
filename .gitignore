@@ -1,0 +1,48 @@
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment and Secrets Protection
+.env
+.env.*
+*.env
+*.pem
+*.key
+*.crt
+*.p12
+*.keystore
+*credential*.json
+google-services.json
+firebase.json
+client_secret*.json
+
+# Mobile & Flutter Artifacts
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*.apk
+*.aab
+*.ipa
+
+# Hardware & Firmware Build Outputs
+*.bin
+*.hex
+*.elf
+*.d
+*.o
+
+# Logs and Diagnostics
+*.log
+debug.log
