@@ -1,4 +1,4 @@
-# 🧠 SAGE — SMRITI ADAPTIV GUARDIAN ENGINE
+# 🧠 SAGE — SMRITI ADAPTIVE GUARDIAN ENGINE
 ### Personal Wearable Memory Capture & Cognitive Retrieval System
 
 > **"People May Fade. Memories Shouldn't."**
