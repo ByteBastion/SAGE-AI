@@ -8,7 +8,7 @@
 [![Hardware](https://img.shields.io/badge/Hardware-Seeed%20XIAO%20ESP32--S3%20Sense-E36A1E)](#)
 [![Product Repo](https://img.shields.io/badge/Product-SAGE--Product-1E9E5A)](https://github.com/ByteBastion/SAGE-Product)
 [![Implementation](https://img.shields.io/badge/Core%20Implementation-Private%20(SAGE--Core)-555555)](#sage-ecosystem)
-[![License](https://img.shields.io/badge/License-Proprietary%20Research-B83232)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
@@ -141,8 +141,8 @@ If referencing this research framework or system architecture in academic work, 
 
 ---
 
-## 10. Intellectual Property & License
+## 10. License
 
-Copyright © 2026 Vinayak Sharma / ByteBastion. All Rights Reserved.
+This repository is licensed under the [MIT License](LICENSE) (`Copyright © 2026 Vinayak Sharma (ByteBastion)`).
 
-This repository preserves the research methodology, theoretical architecture, and academic documentation for SAGE. See [LICENSE](LICENSE) for full terms. For the public Android release and product documentation, visit **[ByteBastion/SAGE-Product](https://github.com/ByteBastion/SAGE-Product)**.
+This repository preserves the research methodology, theoretical architecture, and academic documentation for SAGE. For the public Android release and product documentation, visit **[ByteBastion/SAGE-Product](https://github.com/ByteBastion/SAGE-Product)**.
