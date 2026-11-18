@@ -1,48 +1,50 @@
 # Methodology: Asynchronous Capture and Semantic Recall
 
 ## 1. Asynchronous Capture Lifecycle
-SAGE operates on an event-driven state architecture designed to minimize wearable energy consumption while providing comprehensive sensory documentation:
+SAGE operates on a decoupled capture-and-enrichment lifecycle designed to keep the wearable microcontroller lean while preserving rich multimodal context on the companion smartphone:
 
 ```
-[Standby / Viewfinder]
+[Wearable Standby (SAGE-XIAO AP Ready)]
         │
-        ▼ (Session Trigger)
-[Isolated Sensor Capture] ── Concurrent audio/visual acquisition into bounded memory
+        ▼ (Phone Connects via WifiNetworkSpecifier + bindProcessToNetwork)
+[Dual-Core Capture & Streaming] ── Core 1: JPEG (:80) | Core 0: I2S PCM (:81)
         │
-        ▼ (Capture Interval Complete)
-[Peer-to-Peer Offload] ──── Low-latency media transfer to companion mobile client
+        ▼ (Client-Side Interleaved Muxing)
+[Streaming RIFF/AVI Assembly] ──── Interleaves 00dc + 01wb, rewrites header at stop
         │
-        ▼ (Client-Side Ingestion)
-[Media Synthesis & Cache] ─ Client-side timeline reconciliation and local indexing
+        ▼ (Deferred Background Queue — Requires Connectivity)
+[Multimodal AI Synthesis] ──────── Gemini File API -> 7-pillar dual JSON memory
         │
-        ▼ (Continuous Monitoring)
-[Next Capture Decision] ── Evaluates context to trigger subsequent capture cycle
+        ▼ (Transactional Cloud Archival)
+[User-Owned Drive + Local Index] ─ Delete local .avi ONLY after Drive confirmation
 ```
 
 ---
 
-## 2. Multi-Channel Stream Reconciliation
-To resolve the processing limitations of low-power wearables:
-*   **Independent Buffer Acquisition:** Sensor streams are acquired into isolated memory buffers, avoiding on-device container overhead and frame-dropping.
-*   **Metadata Synchronization:** Temporal markers captured during the acquisition window are transmitted alongside media buffers.
-*   **Client-Side Ingestion:** The companion client ingests the parallel streams, using temporal metadata to generate synchronized media archives without taxing the wearable processor.
+## 2. Multi-Channel Stream Reconciliation (Implemented)
+Because the OV2640 camera sensor and I2S PDM microphone operate on independent hardware clocks, fixed-FPS container encoding introduces perceptible audio-visual drift (~5% over short intervals). SAGE resolves this on the mobile client (`MjpegRecorder`):
+1. **Placeholder Header Allocation:** Writes a 1024-byte RIFF/AVI placeholder header at recording start.
+2. **Arrival-Order Interleaving:** Appends JPEG video frames (`00dc`) and 16 kHz PCM audio blocks (`01wb`) as they arrive over separate sockets, recording exact byte offsets for an `idx1` seek index.
+3. **Post-Hoc Header Calibration:** Upon stopping, seeks back to byte `0` and patches `strh` video rate and scale from the actual measured audio sample count:
+   - `videoRate = frameCount * audioSampleRate` (`frameCount * 16000`)
+   - `videoScale = totalAudioSamples`
+   This keeps measured A/V drift below `< 40 ms` on 15-second clips.
 
 ---
 
-## 3. Cognitive Synthesis & Semantic Structuring
-1.  **Multimodal Analysis:** Synchronized media segments are submitted to the cognitive AI pipeline for contextual parsing.
-2.  **Semantic Structuring:** The model extracts:
-    -   A descriptive event title for chronological indexing.
-    -   A concise contextual narrative of activities, objects, and participants.
-    -   Dense semantic descriptors enabling fine-grained vector similarity search.
-3.  **Local Timeline Database:** Extracted metadata is indexed within a localized timeline database for immediate on-device querying.
-4.  **Private Cloud Archival:** Media segments and associated metadata are encrypted and backed up to user-owned private cloud storage.
+## 3. Cognitive Synthesis & Dual-Representation Memory (Implemented)
+1. **Multimodal Ingestion:** Clips are uploaded via the Gemini File API and polled until `ACTIVE`.
+2. **7-Pillar Grounded Prompting:** The model analyzes speech, non-speech audio, visual entities, spatial layout, off-camera sounds, and chronology under a strict anti-hallucination instruction (marking uncertain audio as `unclear`, preserving original spoken languages).
+3. **Dual JSON Output:** Generates:
+   - `human_memory`: A calm, accessible, chronological story tailored for human reading/listening.
+   - `reconstruction_blueprint`: Exhaustive structured evidence (`people`, `objects`, `actions`, `audio.transcript`, `visible_text`, `evidence`, `uncertainties`).
 
 ---
 
-## 4. Conversational Retrieval-Augmented Generation (RAG)
-SAGE implements an intelligent retrieval pipeline for natural language query resolution:
-1.  **Query Parsing:** Translates natural language questions into semantic search vectors.
-2.  **Contextual Matching:** Identifies top relevant timeline events using semantic and temporal filtering.
-3.  **Grounded Synthesis:** Supplies retrieved event context to the language model to generate accurate, hallucination-free answers.
-4.  **Interactive Evidence:** Couples conversational responses with direct navigation to the corresponding temporal media segment.
+## 4. Conversational Retrieval Pipeline (Current vs. Planned)
+1. **Current Implementation (Hybrid Token RAG + Grounded Prompting):**
+   - Retrieves relevant context from per-user Profile Facts, Project Memories, past Session Summaries, and chunked Document Attachments (`AttachmentService`) via token-overlap scoring within a 12,000-character budget.
+   - Injects stored recorded video summaries and timelines alongside the user's voice/text query into `GeminiService.chatWithConversationIntelligence`.
+   - Returns structured intent, conversational answer, and `matchedVideoId` so the user can open the original video clip and transcript as ground-truth evidence.
+2. **Planned Phase 2 Upgrade:**
+   - Migrate summary storage from `SharedPreferences` to SQLite and introduce dense vector embeddings for large-scale semantic retrieval and offline querying.
