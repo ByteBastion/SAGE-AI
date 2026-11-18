@@ -20,7 +20,6 @@ SAGE is structured across three dedicated repositories separating academic resea
 | :--- | :---: | :--- |
 | **[ByteBastion/SAGE-AI](https://github.com/ByteBastion/SAGE-AI)** *(this repo)* | 🌐 Public | Academic foundation, 4-agent conceptual architecture, 7-pillar multimodal memory framework, literature review, gap analysis, and pilot evaluation findings. |
 | **[ByteBastion/SAGE-Product](https://github.com/ByteBastion/SAGE-Product)** | 🌐 Public | Public product showcase, system diagrams, Android installation guide, hardware setup documentation, privacy/security specs, and compiled APK releases. |
-| **ByteBastion/SAGE-Core** | 🔒 Private | Full proprietary implementation (Flutter/Dart application, Kotlin Android native networking/keystore bridge, and ESP32-S3 C++/FreeRTOS firmware). |
 
 > Public documentation and Android releases live in `SAGE-Product` and `SAGE-AI`, while proprietary source code remains protected in `SAGE-Core`.
 
